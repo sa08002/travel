@@ -45,29 +45,17 @@ while true
 
   number = gets.to_i
 
-  if number > 50
-    puts "入力された人数が多いです。"
-    puts ""
-    puts "#{number}人でお間違えなければ「1」を、人数を再入力する場合は「2」を入力してください。"
-  else
-    break
-  end
-  
-  print " > "
-  
-  verification = gets.to_i
+  break if (1..50).include?(number)
+    puts <<~EOF
 
-  if verification == 1
-    break
-  elsif
-    verification == 2
-    print "人数を再入力 > "
-    next
-  else
-    puts "1か2を入力してください"
-    print " > "
-    next
-  end
+    入力された値が異常です。
+    
+    再度入力してください。
+
+    EOF
+
+    print "人数を入力 > "
+  next
   
 end
 

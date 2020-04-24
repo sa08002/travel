@@ -38,7 +38,7 @@ while
   break
 end
 
-select_num = num -1 
+select_num = num - 1 
 select_travel = travel_plans[select_num]
 
 puts <<~EOF

@@ -1,3 +1,4 @@
+# 実行 ruby travel.rb
 
 travel_plans = [
   { name:"沖縄", price:10000 },
@@ -14,12 +15,37 @@ end
 puts ""
 print "プランを選択 > "
 
-select_num = gets.to_i - 1
+# 修正前
+# select_num = gets.to_i - 1
+# select_travel = travel_plans[select_num]
+
+# puts ""
+# puts "#{select_travel[:name]}旅行ですね、何人で行きますか？"
+# puts ""
+
+while
+  num = gets.to_i
+
+  if num < 1 || 3 < num
+    puts <<~EOF
+
+    1〜3の番号で入力してください。  
+   
+    EOF
+    print "プランを選択 > "
+    next
+  end
+  break
+end
+
+select_num = num -1 
 select_travel = travel_plans[select_num]
 
-puts ""
-puts "#{select_travel[:name]}旅行ですね、何人で行きますか？"
-puts ""
+puts <<~EOF
+
+#{select_travel[:name]}旅行ですね、何人で行きますか？
+
+EOF
 
 print "人数を入力 > "
 

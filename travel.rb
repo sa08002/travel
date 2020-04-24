@@ -12,33 +12,25 @@ travel_plans.each.with_index(1) do |travel_plan, i|
   puts " #{i}. #{travel_plan[:name]}旅行(¥#{travel_plan[:price]})"
 end
 
+
 puts ""
 print "プランを選択 > "
 
-# 修正前
-# select_num = gets.to_i - 1
-# select_travel = travel_plans[select_num]
-
-# puts ""
-# puts "#{select_travel[:name]}旅行ですね、何人で行きますか？"
-# puts ""
-
-while
+while true
   num = gets.to_i
 
-  if num < 1 || 3 < num
+  break if (1..3).include?(num)
     puts <<~EOF
 
     1〜3の番号で入力してください。  
    
     EOF
     print "プランを選択 > "
-    next
-  end
-  break
+  next
+  
 end
 
-select_num = num - 1 
+select_num = num -1 
 select_travel = travel_plans[select_num]
 
 puts <<~EOF
@@ -49,7 +41,35 @@ EOF
 
 print "人数を入力 > "
 
-number = gets.to_i
+while true
+
+  number = gets.to_i
+
+  if number > 50
+    puts "入力された人数が多いです。"
+    puts ""
+    puts "#{number}人でお間違えなければ「1」を、人数を再入力する場合は「2」を入力してください。"
+  else
+    break
+  end
+  
+  print " > "
+  
+  verification = gets.to_i
+
+  if verification == 1
+    break
+  elsif
+    verification == 2
+    print "人数を再入力 > "
+    next
+  else
+    puts "1か2を入力してください"
+    print " > "
+    next
+  end
+  
+end
 
 puts ""
 

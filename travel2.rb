@@ -1,16 +1,13 @@
 # 実行 ruby travel2.rb
 
-def tarvel_table
 
-  travel_plans = [
-    { name:"沖縄", price:10000 },
-    { name:"北海道", price:20000 },
-    { name:"九州", price:15000 },
-  ]
+travel_plans = [
+  { name:"沖縄", price:10000 },
+  { name:"北海道", price:20000 },
+  { name:"九州", price:15000 },
+]
 
-  @table = travel_plans
-
-end
+@table = travel_plans
 
 
 # 旅行プランの表示
@@ -33,9 +30,9 @@ def travel_choose
   print "プランを選択 > "
   
   while true
-    num = gets.to_i
+    @num = gets.to_i
   
-    break if (1..3).include?(num)
+    break if (1..3).include?(@num)
       puts <<~EOF
   
       1〜3の番号で入力してください。  
@@ -47,16 +44,18 @@ def travel_choose
   end
 end
 
+travel_choose
+
 
 # 人数の入力
 
 def travel_input
-  select_num = num - 1 
-  select_travel = travel_plans[select_num]
+  select_num = @num - 1 
+  @select_travel = @table[select_num]
   
   puts <<~EOF
   
-  #{select_travel[:name]}旅行ですね、何人で行きますか？
+  #{@select_travel[:name]}旅行ですね、何人で行きますか？
   
   EOF
   
@@ -64,9 +63,9 @@ def travel_input
   
   while true
   
-    number = gets.to_i
+    @number = gets.to_i
   
-    break if (1..50).include?(number)
+    break if (1..50).include?(@number)
       puts <<~EOF
   
       入力された値が異常です。
@@ -81,17 +80,20 @@ def travel_input
   puts ""
 end
 
+travel_input
+
 
 # 合計金額は？
 
 def travel_total
-  if number >= 5
+  if @number >= 5
     puts "5人以上なので10%割引となります"
-    total = number * select_travel[:price] - (select_travel[:price] * 0.1)
+    total = @number * @select_travel[:price] - (@select_travel[:price] * 0.1)
   else
-    total = number * select_travel[:price]
+    total = @number * @select_travel[:price]
   end
   puts ""
   puts "合計料金:¥#{total.floor}"
 end
 
+travel_total

@@ -1,11 +1,16 @@
 # 実行 ruby travel2.rb
 
+def tarvel_table
 
-travel_plans = [
-  { name:"沖縄", price:10000 },
-  { name:"北海道", price:20000 },
-  { name:"九州", price:15000 },
-]
+  travel_plans = [
+    { name:"沖縄", price:10000 },
+    { name:"北海道", price:20000 },
+    { name:"九州", price:15000 },
+  ]
+
+  @table = travel_plans
+
+end
 
 
 # 旅行プランの表示
@@ -13,10 +18,12 @@ travel_plans = [
 def travel_display
   puts "旅行プランを選択してください"
   
-  travel_plans.each.with_index(1) do |travel_plan, i|
+  @table.each.with_index(1) do |travel_plan, i|
     puts " #{i}. #{travel_plan[:name]}旅行(¥#{travel_plan[:price]})"
   end
 end
+
+travel_display
 
 
 # 旅行プランの選択
@@ -43,7 +50,7 @@ end
 
 # 人数の入力
 
-def input
+def travel_input
   select_num = num - 1 
   select_travel = travel_plans[select_num]
   
@@ -77,7 +84,7 @@ end
 
 # 合計金額は？
 
-def total
+def travel_total
   if number >= 5
     puts "5人以上なので10%割引となります"
     total = number * select_travel[:price] - (select_travel[:price] * 0.1)
@@ -87,3 +94,4 @@ def total
   puts ""
   puts "合計料金:¥#{total.floor}"
 end
+

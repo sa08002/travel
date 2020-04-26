@@ -20,8 +20,6 @@ def travel_display
   end
 end
 
-travel_display
-
 
 # 旅行プランの選択
 
@@ -43,8 +41,6 @@ def travel_choose
     
   end
 end
-
-travel_choose
 
 
 # 人数の入力
@@ -80,8 +76,6 @@ def travel_input
   puts ""
 end
 
-travel_input
-
 
 # 合計金額は？
 
@@ -95,5 +89,3 @@ def travel_total
   puts ""
   puts "合計料金:¥#{total.floor}"
 end
-
-travel_total

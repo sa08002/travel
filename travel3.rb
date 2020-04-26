@@ -1,4 +1,4 @@
-# 実行 ruby travel2.rb
+# 実行 ruby travel3.rb
 
 
 travel_plans = [
@@ -46,6 +46,7 @@ end
 # 人数の入力
 
 def travel_input
+
   select_num = @num - 1 
   @select_travel = @table[select_num]
   
@@ -56,22 +57,59 @@ def travel_input
   EOF
   
   print "人数を入力 > "
-  
-  while true
-  
-    @number = gets.to_i
-  
-    break if (1..50).include?(@number)
-      puts <<~EOF
-  
-      入力された値が異常です。
+
+  catch :out do
+    
+    while true
       
-      再度入力してください。
-  
-      EOF
-  
-      print "人数を入力 > "
-    next
+      @number = gets.to_i
+      
+      if @number < 0
+        puts <<~EOF
+        
+        入力された値が異常です。
+        
+        再度入力してください。
+        
+        EOF
+        
+        print "人数を入力 > "
+        next
+      elsif @number > 49
+        puts <<~EOF
+
+        入力された数が多いです。
+          
+        #{@number}人で間違いない場合は「1」を、訂正する場合は「2」を入力してください。
+        
+        EOF
+      
+        print "入力 > "
+        
+        while true 
+          
+          enter = gets.to_i
+          
+          if enter == 1
+            throw :out
+          elsif enter == 2
+            puts ""
+            print "人数を入力 > "
+            break
+          else enter < 0 || 3 < enter
+            puts <<~EOF
+
+            「1」か「2」を入力してください。
+            
+            EOF
+            print "入力 > "
+            next
+          end
+        end
+      else @number == (1..49)
+        break
+      end
+    end
   end
   puts ""
 end
@@ -82,10 +120,10 @@ end
 def travel_total
   if @number >= 5
     puts "5人以上なので10%割引となります"
+    puts ""
     total = @number * @select_travel[:price] - (@select_travel[:price] * 0.1)
   else
     total = @number * @select_travel[:price]
   end
-  puts ""
   puts "合計料金:¥#{total.floor}"
 end

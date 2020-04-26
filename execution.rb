@@ -1,6 +1,6 @@
 # 実行 ruby execution.rb
 
-require './travel2.rb'
+require './travel3.rb'
 
 
 # 旅行プランの表示

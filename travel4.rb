@@ -1,5 +1,7 @@
 
 
+
+
 travel_plans = [
   { name:"沖縄", price:10000 },
   { name:"北海道", price:20000 },
@@ -72,10 +74,10 @@ def travel_confirmation
       @number = gets.to_i
       
       if @number < 0
-        unusual_value
+        a
         next
       elsif @number > 49
-        many_numbers
+        b
 
         while true 
           
@@ -105,9 +107,7 @@ def travel_confirmation
 end
 
 
-#異常な値の入力
-
-def unusual_value
+def a
   puts <<~EOF
           
   入力された値が異常です。
@@ -120,9 +120,7 @@ def unusual_value
 end
 
 
-#入力された数値が多い
-
-def many_numbers
+def b
   puts <<~EOF
           
   入力された数が多いです。

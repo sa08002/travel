@@ -1,3 +1,4 @@
+# 実行 ruby travel2.rb
 
 
 travel_plans = [
@@ -12,7 +13,6 @@ travel_plans = [
 # 旅行プランの表示
 
 def travel_display
-
   puts "旅行プランを選択してください"
   
   @table.each.with_index(1) do |travel_plan, i|
@@ -46,7 +46,6 @@ end
 # 人数の入力
 
 def travel_input
-
   select_num = @num - 1 
   @select_travel = @table[select_num]
   
@@ -57,81 +56,24 @@ def travel_input
   EOF
   
   print "人数を入力 > "
-
-end
-
-
-#人数の確認
-
-def travel_confirmation
   
-  catch :out do
-    
-    while true
+  while true
+  
+    @number = gets.to_i
+  
+    break if (1..50).include?(@number)
+      puts <<~EOF
+  
+      入力された値が異常です。
       
-      @number = gets.to_i
-      
-      if @number < 0
-        unusual_value
-        next
-      elsif @number > 49
-        many_numbers
-
-        while true 
-          
-          case gets.to_i
-          when 1
-            throw :out
-          when 2
-            puts ""
-            print "人数を入力 > "
-            break
-          else
-            puts <<~EOF
-            
-            「1」か「2」を入力してください。
-          
-          EOF
-          print "入力 > "
-          next
-          end
-        end
-      else
-        break
-      end
-    end
+      再度入力してください。
+  
+      EOF
+  
+      print "人数を入力 > "
+    next
   end
   puts ""
-end
-
-
-#異常な値の入力
-
-def unusual_value
-  puts <<~EOF
-          
-  入力された値が異常です。
-          
-  再度入力してください。
-
-  EOF
-
-  print "人数を入力 > "
-end
-
-
-#入力された数値が多い
-
-def many_numbers
-  puts <<~EOF
-          
-  入力された数が多いです。
-
-  #{@number}人で間違いない場合は「1」を、訂正する場合は「2」を入力してください。
-
-  EOF
-
-  print "入力 > "
 end
 
 
@@ -140,10 +82,10 @@ end
 def travel_total
   if @number >= 5
     puts "5人以上なので10%割引となります"
-    puts ""
     total = @number * @select_travel[:price] - (@select_travel[:price] * 0.1)
   else
     total = @number * @select_travel[:price]
   end
+  puts ""
   puts "合計料金:¥#{total.floor}"
 end

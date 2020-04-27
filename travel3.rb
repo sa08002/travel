@@ -1,4 +1,4 @@
-# 実行 ruby travel3.rb
+
 
 
 travel_plans = [
@@ -13,6 +13,7 @@ travel_plans = [
 # 旅行プランの表示
 
 def travel_display
+
   puts "旅行プランを選択してください"
   
   @table.each.with_index(1) do |travel_plan, i|
@@ -58,6 +59,13 @@ def travel_input
   
   print "人数を入力 > "
 
+end
+
+
+#人数の確認
+
+def travel_confirmation
+  
   catch :out do
     
     while true
@@ -77,43 +85,41 @@ def travel_input
         next
       elsif @number > 49
         puts <<~EOF
-
+        
         入力された数が多いです。
-          
+        
         #{@number}人で間違いない場合は「1」を、訂正する場合は「2」を入力してください。
         
         EOF
-      
+        
         print "入力 > "
         
         while true 
           
-          enter = gets.to_i
-          
-          if enter == 1
+          case gets.to_i
+          when 1
             throw :out
-          elsif enter == 2
+          when 2
             puts ""
             print "人数を入力 > "
             break
-          else enter < 0 || 3 < enter
+          else
             puts <<~EOF
-
-            「1」か「2」を入力してください。
             
-            EOF
-            print "入力 > "
-            next
+            「1」か「2」を入力してください。
+          
+          EOF
+          print "入力 > "
+          next
           end
         end
-      else @number == (1..49)
+      else
         break
       end
     end
   end
   puts ""
 end
-
 
 # 合計金額は？
 
